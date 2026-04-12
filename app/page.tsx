@@ -11,15 +11,14 @@ function MainContent() {
   const { isCollapsed } = useSidebar()
 
   return (
-    <div className="flex min-h-screen bg-background">
+    <div className="min-h-screen bg-background">
       <SidebarNav />
       <div 
-        className={`flex-1 transition-all duration-300 ${
-          isCollapsed ? "pl-[72px]" : "pl-64"
-        }`}
+        className="flex flex-col min-h-screen transition-all duration-300"
+        style={{ marginLeft: isCollapsed ? "72px" : "256px" }}
       >
         <TopHeader />
-        <main className="space-y-12 p-6 lg:p-8">
+        <main className="flex-1 space-y-12 p-6 lg:p-8">
           <HeroSection />
           <CategoryCards />
           <MarketplaceGrid />

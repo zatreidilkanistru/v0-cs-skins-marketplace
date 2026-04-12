@@ -11,12 +11,11 @@ function ProfileLayoutContent({ children }: { children: React.ReactNode }) {
     <div className="min-h-screen bg-background">
       <SidebarNav />
       <div 
-        className={`transition-all duration-300 ${
-          isCollapsed ? "pl-[72px]" : "pl-64"
-        }`}
+        className="flex flex-col min-h-screen transition-all duration-300"
+        style={{ marginLeft: isCollapsed ? "72px" : "256px" }}
       >
         <TopHeader />
-        <main>{children}</main>
+        <main className="flex-1">{children}</main>
       </div>
     </div>
   )
