@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog"
@@ -90,9 +91,9 @@ export function ManageWalletsModal({ open, onOpenChange }: ManageWalletsModalPro
               <X className="h-4 w-4" />
             </Button>
           </div>
-          <p className="text-sm text-muted-foreground">
+          <DialogDescription className="text-sm text-muted-foreground">
             Connect multiple wallets for trading across different networks.
-          </p>
+          </DialogDescription>
         </DialogHeader>
 
         <div className="p-4 space-y-3 max-h-[400px] overflow-y-auto">

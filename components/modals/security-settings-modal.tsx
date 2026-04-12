@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog"
@@ -99,9 +100,9 @@ export function SecuritySettingsModal({ open, onOpenChange }: SecuritySettingsMo
               <X className="h-4 w-4" />
             </Button>
           </div>
-          <p className="text-sm text-muted-foreground">
+          <DialogDescription className="text-sm text-muted-foreground">
             Manage email, phone, 2FA and active sessions from one place.
-          </p>
+          </DialogDescription>
         </DialogHeader>
 
         <div className="p-4 space-y-3">

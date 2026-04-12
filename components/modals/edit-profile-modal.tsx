@@ -8,6 +8,7 @@ import { Textarea } from "@/components/ui/textarea"
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog"
@@ -44,9 +45,9 @@ export function EditProfileModal({ open, onOpenChange }: EditProfileModalProps) 
               <X className="h-4 w-4" />
             </Button>
           </div>
-          <p className="text-sm text-muted-foreground">
+          <DialogDescription className="text-sm text-muted-foreground">
             Customize your marketplace presence. Changes are visible to all users.
-          </p>
+          </DialogDescription>
         </DialogHeader>
 
         <div className="p-4 space-y-6 max-h-[70vh] overflow-y-auto">

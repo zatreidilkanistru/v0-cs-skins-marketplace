@@ -8,6 +8,7 @@ import { Textarea } from "@/components/ui/textarea"
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog"
@@ -112,9 +113,9 @@ export function CreateListingModal({ open, onOpenChange, item }: CreateListingMo
             </Button>
           </div>
           <DialogTitle className="text-xl font-semibold mt-2">Create Listing</DialogTitle>
-          <p className="text-sm text-muted-foreground">
+          <DialogDescription className="text-sm text-muted-foreground">
             Confirm price, accepted tokens and networks before publishing this listing.
-          </p>
+          </DialogDescription>
         </DialogHeader>
 
         <div className="p-4 space-y-5 max-h-[60vh] overflow-y-auto">
