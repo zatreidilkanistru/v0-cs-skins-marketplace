@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { useRouter } from "next/navigation"
 import { SidebarProvider, useSidebar } from "@/components/sidebar-context"
 import { SidebarNav } from "@/components/sidebar-nav"
 import { TopHeader } from "@/components/top-header"
@@ -88,6 +89,7 @@ const friends = [
 
 function FriendsContent() {
   const { isCollapsed } = useSidebar()
+  const router = useRouter()
   const [searchQuery, setSearchQuery] = useState("")
   const [filter, setFilter] = useState<"all" | "online" | "offline">("all")
 
@@ -269,7 +271,10 @@ function FriendsContent() {
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                         </svg>
                       </button>
-                      <button className="flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg text-sm font-medium hover:bg-primary/90 transition-colors">
+                      <button 
+                        onClick={() => router.push(`/messages?user=${friend.username}`)}
+                        className="flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg text-sm font-medium hover:bg-primary/90 transition-colors"
+                      >
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
                         </svg>
