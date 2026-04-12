@@ -6,15 +6,21 @@ import { TopHeader } from "@/components/top-header"
 import { TradesHeader } from "@/components/trades/trades-header"
 import { TradesList } from "@/components/trades/trades-list"
 import { TradeDetail } from "@/components/trades/trade-detail"
+import { SidebarProvider, useSidebar } from "@/components/sidebar-context"
 
-export default function TradesPage() {
+function TradesContent() {
+  const { isCollapsed } = useSidebar()
   const [activeTab, setActiveTab] = useState<"active" | "history">("active")
   const [selectedTradeId, setSelectedTradeId] = useState<string | null>(null)
 
   return (
     <div className="flex min-h-screen bg-background">
       <SidebarNav />
-      <div className="flex-1 flex flex-col">
+      <div 
+        className={`flex-1 flex flex-col transition-all duration-300 ${
+          isCollapsed ? "pl-[72px]" : "pl-64"
+        }`}
+      >
         <TopHeader />
         <main className="flex-1 p-6 overflow-auto">
           <TradesHeader activeTab={activeTab} setActiveTab={setActiveTab} />
@@ -40,5 +46,13 @@ export default function TradesPage() {
         </main>
       </div>
     </div>
+  )
+}
+
+export default function TradesPage() {
+  return (
+    <SidebarProvider>
+      <TradesContent />
+    </SidebarProvider>
   )
 }
