@@ -98,7 +98,7 @@ export function InventoryGrid({ selectedTier, searchQuery }: InventoryGridProps)
   })
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 pb-6">
       {filteredItems.map((item) => {
         const colors = tierColors[item.tier] || tierColors.common
         

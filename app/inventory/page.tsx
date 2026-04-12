@@ -17,13 +17,13 @@ export default function InventoryPage() {
     <SidebarProvider>
       <div className="min-h-screen bg-background flex">
         <SidebarNav />
-        <div className="flex-1 flex flex-col min-w-0">
+        <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
           <TopHeader />
-          <main className="flex-1 p-6 overflow-auto">
+          <main className="flex-1 p-6 overflow-y-auto overflow-x-hidden">
             <div className="max-w-[1600px] mx-auto">
-              <div className="flex gap-6">
+              <div className="flex flex-col lg:flex-row gap-6">
                 {/* Main Content */}
-                <div className="flex-1 min-w-0">
+                <div className="flex-1 min-w-0 order-2 lg:order-1">
                   <InventoryHeader />
                   <InventoryFilters 
                     selectedTier={selectedTier}
@@ -36,7 +36,7 @@ export default function InventoryPage() {
                 </div>
                 
                 {/* Right Sidebar */}
-                <div className="w-72 flex-shrink-0 space-y-6">
+                <div className="w-full lg:w-72 flex-shrink-0 space-y-4 order-1 lg:order-2 lg:sticky lg:top-0">
                   {/* Search */}
                   <div>
                     <label className="text-xs font-medium text-muted-foreground tracking-wider uppercase mb-2 block">
