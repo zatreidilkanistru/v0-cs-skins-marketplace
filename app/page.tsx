@@ -5,6 +5,7 @@ import { TopHeader } from "@/components/top-header"
 import { HeroSection } from "@/components/hero-section"
 import { CategoryCards } from "@/components/category-cards"
 import { MarketplaceGrid } from "@/components/marketplace-grid"
+import { RecentlyViewed } from "@/components/recently-viewed"
 import { SidebarProvider, useSidebar } from "@/components/sidebar-context"
 
 function MainContent() {
@@ -20,6 +21,7 @@ function MainContent() {
         <TopHeader />
         <main className="flex-1 space-y-12 p-6 lg:p-8">
           <HeroSection />
+          <RecentlyViewed />
           <CategoryCards />
           <MarketplaceGrid />
         </main>

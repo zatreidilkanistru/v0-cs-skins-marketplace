@@ -13,6 +13,9 @@ import {
   Shield,
   ChevronLeft,
   ChevronRight,
+  Eye,
+  MessageSquare,
+  Settings,
 } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
@@ -22,6 +25,8 @@ const mainNavItems = [
   { icon: ShoppingCart, label: "Market", href: "/" },
   { icon: RefreshCw, label: "My trades", href: "/trades" },
   { icon: Package, label: "Inventory", href: "/inventory" },
+  { icon: Eye, label: "Watchlist", href: "/watchlist" },
+  { icon: MessageSquare, label: "Messages", href: "/messages" },
   { icon: Users, label: "Friends", href: "/friends" },
   { icon: User, label: "Profile", href: "/profile" },
 ]
@@ -31,6 +36,7 @@ const secondaryNavItems = [
 ]
 
 const bottomNavItems = [
+  { icon: Settings, label: "Settings", href: "/settings" },
   { icon: HelpCircle, label: "Support & FAQ", href: "/support" },
   { icon: Shield, label: "Admin", href: "/admin", highlight: true },
 ]
