@@ -22,6 +22,8 @@ import {
   AlertTriangle,
 } from "lucide-react"
 import Link from "next/link"
+import { ConfirmPurchaseModal } from "@/components/modals/confirm-purchase-modal"
+import { MakeOfferModal } from "@/components/modals/make-offer-modal"
 
 // Mock item data
 const mockItem = {
@@ -62,6 +64,7 @@ function ItemDetailContent() {
   const [isFavorited, setIsFavorited] = useState(false)
   const [copied, setCopied] = useState(false)
   const [showOfferModal, setShowOfferModal] = useState(false)
+  const [showPurchaseModal, setShowPurchaseModal] = useState(false)
 
   const item = mockItem
 
@@ -227,10 +230,10 @@ function ItemDetailContent() {
                     </div>
                   </div>
 
-                  <div className="space-y-3">
-                    <Button className="w-full" size="lg">
-                      Buy Now
-                    </Button>
+<div className="space-y-3">
+                <Button className="w-full" size="lg" onClick={() => setShowPurchaseModal(true)}>
+                  Buy Now
+                </Button>
                     <Button variant="outline" className="w-full" size="lg" onClick={() => setShowOfferModal(true)}>
                       Make Offer
                     </Button>
@@ -323,6 +326,33 @@ function ItemDetailContent() {
           </div>
         </main>
       </div>
+
+      {/* Modals */}
+      <MakeOfferModal
+        open={showOfferModal}
+        onOpenChange={setShowOfferModal}
+        item={{
+          name: item.name,
+          image: "https://community.fastly.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpou-6kejhz2v_Nfz5H_uO1gb-Gw_alIITCmX5d_MR6j_v--YXygED6_UY5NjvxcNSUdQc2ZA7TqVa4wuu5gMK0uM7LnXA17iIi5XrZln-JuONZ/360fx360f",
+          currentPrice: item.price,
+          seller: item.seller.name,
+        }}
+      />
+      <ConfirmPurchaseModal
+        open={showPurchaseModal}
+        onOpenChange={setShowPurchaseModal}
+        item={{
+          name: item.name,
+          wear: getWearName(item.float),
+          price: item.price,
+          image: "https://community.fastly.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpou-6kejhz2v_Nfz5H_uO1gb-Gw_alIITCmX5d_MR6j_v--YXygED6_UY5NjvxcNSUdQc2ZA7TqVa4wuu5gMK0uM7LnXA17iIi5XrZln-JuONZ/360fx360f",
+          seller: {
+            name: item.seller.name,
+            trustScore: item.seller.trustScore,
+            trades: item.seller.totalTrades,
+          },
+        }}
+      />
     </div>
   )
 }

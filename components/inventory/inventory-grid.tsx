@@ -1,6 +1,8 @@
 "use client"
 
+import { useState } from "react"
 import { CheckCircle } from "lucide-react"
+import { CreateListingModal } from "@/components/modals/create-listing-modal"
 
 interface InventoryGridProps {
   selectedTier: string
@@ -91,6 +93,9 @@ const inventoryItems = [
 ]
 
 export function InventoryGrid({ selectedTier, searchQuery }: InventoryGridProps) {
+  const [listingModalOpen, setListingModalOpen] = useState(false)
+  const [selectedItem, setSelectedItem] = useState<typeof inventoryItems[0] | null>(null)
+
   const filteredItems = inventoryItems.filter((item) => {
     const matchesTier = selectedTier === "all" || item.tier === selectedTier
     const matchesSearch = item.name.toLowerCase().includes(searchQuery.toLowerCase())
@@ -151,13 +156,31 @@ export function InventoryGrid({ selectedTier, searchQuery }: InventoryGridProps)
 
             {/* Action Button */}
             <div className="p-4 pt-0">
-              <button className="w-full py-2.5 bg-primary text-primary-foreground rounded-lg font-medium text-sm hover:bg-primary/90 transition-colors">
+              <button 
+                onClick={() => {
+                  setSelectedItem(item)
+                  setListingModalOpen(true)
+                }}
+                className="w-full py-2.5 bg-primary text-primary-foreground rounded-lg font-medium text-sm hover:bg-primary/90 transition-colors"
+              >
                 List item
               </button>
             </div>
           </div>
         )
       })}
+
+      {selectedItem && (
+        <CreateListingModal
+          open={listingModalOpen}
+          onOpenChange={setListingModalOpen}
+          item={{
+            name: selectedItem.name,
+            tier: selectedItem.tier,
+            image: selectedItem.image,
+          }}
+        />
+      )}
     </div>
   )
 }

@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { CryptoFilter } from "./crypto-filter"
 import { cn } from "@/lib/utils"
+import { ConfirmPurchaseModal } from "@/components/modals/confirm-purchase-modal"
 
 const sampleListings = [
   {
@@ -27,6 +28,8 @@ const sampleListings = [
 
 export function MarketplaceGrid() {
   const [layout, setLayout] = useState<"comfortable" | "compact">("comfortable")
+  const [purchaseModalOpen, setPurchaseModalOpen] = useState(false)
+  const [selectedListing, setSelectedListing] = useState<typeof sampleListings[0] | null>(null)
 
   return (
     <section className="space-y-6">
@@ -153,7 +156,14 @@ export function MarketplaceGrid() {
                 <p className="text-lg font-bold text-foreground">
                   {listing.price}
                 </p>
-                <Button size="sm" className="h-8">
+                <Button 
+                  size="sm" 
+                  className="h-8"
+                  onClick={() => {
+                    setSelectedListing(listing)
+                    setPurchaseModalOpen(true)
+                  }}
+                >
                   Buy now
                 </Button>
               </div>
@@ -161,6 +171,24 @@ export function MarketplaceGrid() {
           </div>
         ))}
       </div>
+
+      {selectedListing && (
+        <ConfirmPurchaseModal
+          open={purchaseModalOpen}
+          onOpenChange={setPurchaseModalOpen}
+          item={{
+            name: selectedListing.name,
+            wear: selectedListing.wear,
+            price: parseFloat(selectedListing.price.split(" ")[0]),
+            image: selectedListing.image,
+            seller: {
+              name: "trader_pro",
+              trustScore: parseFloat(selectedListing.trust),
+              trades: 127,
+            },
+          }}
+        />
+      )}
     </section>
   )
 }
