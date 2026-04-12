@@ -11,6 +11,7 @@ import {
 import { SearchDropdown } from "@/components/ui/search-dropdown"
 import { NotificationDropdown } from "@/components/ui/notification-dropdown"
 import { ProfileDropdown } from "@/components/ui/profile-dropdown"
+import { WalletDropdown } from "@/components/ui/wallet-dropdown"
 
 export function TopHeader() {
   return (
@@ -37,6 +38,9 @@ export function TopHeader() {
             <DropdownMenuItem>Русский</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
+
+        {/* Wallet Balance */}
+        <WalletDropdown />
 
         {/* Notifications */}
         <NotificationDropdown />

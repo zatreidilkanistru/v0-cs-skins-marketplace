@@ -16,6 +16,7 @@ import {
   Eye,
   MessageSquare,
   Settings,
+  History,
 } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
@@ -26,6 +27,7 @@ const mainNavItems = [
   { icon: RefreshCw, label: "My trades", href: "/trades" },
   { icon: Package, label: "Inventory", href: "/inventory" },
   { icon: Eye, label: "Watchlist", href: "/watchlist" },
+  { icon: History, label: "History", href: "/history" },
   { icon: MessageSquare, label: "Messages", href: "/messages" },
   { icon: Users, label: "Friends", href: "/friends" },
   { icon: User, label: "Profile", href: "/profile" },
