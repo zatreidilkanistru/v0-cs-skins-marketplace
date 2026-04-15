@@ -73,14 +73,14 @@ export function InventoryTab() {
   const [searchQuery, setSearchQuery] = useState("")
 
   return (
-    <div>
+    <div className="pt-2">
       {/* Header */}
       <div className="mb-6 flex items-center justify-between">
         <div>
           <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
             Inventory Items
           </p>
-          <p className="text-3xl font-bold text-foreground">100</p>
+          <p className="text-3xl font-bold text-foreground mt-1">100</p>
         </div>
         <Button variant="outline" className="border-border">
           Open inventory

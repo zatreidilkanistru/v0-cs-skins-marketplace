@@ -14,9 +14,9 @@ export default function ProfilePage() {
   return (
     <div className="min-h-screen">
       <ProfileHeader />
-      <div className="px-6 py-4">
+      <div className="px-6 py-6">
         <ProfileTabs activeTab={activeTab} onTabChange={setActiveTab} />
-        <div className="mt-6">
+        <div className="mt-8">
           {activeTab === "inventory" && <InventoryTab />}
           {activeTab === "offers" && <OffersTab />}
           {activeTab === "favorites" && <FavoritesTab />}
