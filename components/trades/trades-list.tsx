@@ -173,89 +173,93 @@ export function TradesList({ activeTab, selectedTradeId, onSelectTrade }: Trades
             <button
               key={trade.id}
               onClick={() => onSelectTrade(isSelected ? null : trade.id)}
-              className={`w-full grid grid-cols-[64px_1fr_auto_auto_64px_20px] items-center gap-3 px-4 py-3 rounded-lg transition-all text-left ${
+              className={`w-full px-4 py-3 rounded-lg transition-all text-left ${
                 isSelected
                   ? "bg-primary/10 border border-primary/30"
                   : "bg-card border border-border hover:bg-secondary/50 hover:border-primary/20"
               }`}
             >
-              {/* Item Image */}
-              <div className="relative w-16 h-12 bg-secondary/50 rounded flex items-center justify-center overflow-hidden">
-                <Image
-                  src={trade.item.image}
-                  alt={trade.item.name}
-                  fill
-                  className="object-contain p-1"
-                />
-              </div>
-
-              {/* Item Info */}
-              <div className="min-w-0">
-                <p className="text-sm font-medium text-foreground truncate">
-                  {trade.item.name}
-                </p>
-                <div className="flex items-center gap-2 mt-0.5">
-                  {trade.item.wear && (
-                    <span className="text-xs text-muted-foreground truncate">
-                      {trade.item.wear}
-                    </span>
-                  )}
-                  <span className={`inline-flex px-1.5 py-0.5 text-[10px] font-medium rounded whitespace-nowrap ${
-                    trade.role === "seller" 
-                      ? "bg-primary/10 text-primary" 
-                      : "bg-blue-500/10 text-blue-400"
-                  }`}>
-                    {trade.role === "seller" ? "Selling" : "Buying"}
-                  </span>
+              <div className="flex items-center gap-3">
+                {/* Item Image */}
+                <div className="relative w-14 h-10 bg-secondary/50 rounded flex-shrink-0 overflow-hidden">
+                  <Image
+                    src={trade.item.image}
+                    alt={trade.item.name}
+                    fill
+                    className="object-contain p-1"
+                  />
                 </div>
-              </div>
 
-              {/* Status & Price combined */}
-              <div className="text-right min-w-[100px]">
-                <p className="text-sm font-semibold text-foreground whitespace-nowrap">
-                  {trade.price} {trade.currency}
-                </p>
-                <div className="flex items-center justify-end gap-1.5 mt-0.5">
-                  <StatusIcon className={`h-3 w-3 ${status.color}`} />
-                  <span className={`text-[10px] font-medium ${status.color} whitespace-nowrap`}>
-                    {status.label}
-                  </span>
+                {/* Main Content */}
+                <div className="flex-1 min-w-0">
+                  {/* Row 1: Name and Price */}
+                  <div className="flex items-center justify-between gap-2">
+                    <p className="text-sm font-medium text-foreground truncate">
+                      {trade.item.name}
+                    </p>
+                    <p className="text-sm font-semibold text-foreground whitespace-nowrap flex-shrink-0">
+                      {trade.price} {trade.currency}
+                    </p>
+                  </div>
+                  
+                  {/* Row 2: Wear, Role, Status, Next Action */}
+                  <div className="flex items-center justify-between gap-2 mt-1">
+                    <div className="flex items-center gap-2 min-w-0">
+                      {trade.item.wear && (
+                        <span className="text-xs text-muted-foreground">
+                          {trade.item.wear}
+                        </span>
+                      )}
+                      <span className={`inline-flex px-1.5 py-0.5 text-[10px] font-medium rounded flex-shrink-0 ${
+                        trade.role === "seller" 
+                          ? "bg-primary/10 text-primary" 
+                          : "bg-blue-500/10 text-blue-400"
+                      }`}>
+                        {trade.role === "seller" ? "Selling" : "Buying"}
+                      </span>
+                      <div className="flex items-center gap-1 flex-shrink-0">
+                        <StatusIcon className={`h-3 w-3 ${status.color}`} />
+                        <span className={`text-[10px] font-medium ${status.color}`}>
+                          {status.label}
+                        </span>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-center gap-3 flex-shrink-0">
+                      {trade.nextAction && activeTab === "active" && (
+                        <span className="text-[10px] text-muted-foreground hidden sm:inline">
+                          Next: {trade.nextAction}
+                        </span>
+                      )}
+                      <span className="text-[10px] text-muted-foreground">
+                        {trade.createdAt}
+                      </span>
+                    </div>
+                  </div>
                 </div>
-              </div>
 
-              {/* Next Action */}
-              <div className="min-w-[100px]">
-                {trade.nextAction && activeTab === "active" && (
-                  <p className="text-[10px] text-muted-foreground whitespace-nowrap">
-                    Next: {trade.nextAction}
+                {/* Progress */}
+                <div className="flex-shrink-0 w-12">
+                  <div className="flex items-center gap-0.5">
+                    {Array.from({ length: trade.totalSteps }).map((_, i) => (
+                      <div
+                        key={i}
+                        className={`h-1.5 flex-1 rounded-full ${
+                          i < trade.currentStep ? "bg-primary" : "bg-border"
+                        }`}
+                      />
+                    ))}
+                  </div>
+                  <p className="text-[10px] text-muted-foreground text-center mt-0.5">
+                    {trade.currentStep}/{trade.totalSteps}
                   </p>
-                )}
-                <p className="text-[10px] text-muted-foreground">{trade.createdAt}</p>
-              </div>
-
-              {/* Progress */}
-              <div className="w-16">
-                <div className="flex items-center gap-0.5">
-                  {Array.from({ length: trade.totalSteps }).map((_, i) => (
-                    <div
-                      key={i}
-                      className={`h-1.5 flex-1 rounded-full ${
-                        i < trade.currentStep
-                          ? "bg-primary"
-                          : "bg-border"
-                      }`}
-                    />
-                  ))}
                 </div>
-                <p className="text-[10px] text-muted-foreground text-center mt-1">
-                  {trade.currentStep}/{trade.totalSteps}
-                </p>
-              </div>
 
-              {/* Arrow */}
-              <ChevronRight className={`h-4 w-4 transition-transform ${
-                isSelected ? "rotate-90 text-primary" : "text-muted-foreground"
-              }`} />
+                {/* Arrow */}
+                <ChevronRight className={`h-4 w-4 flex-shrink-0 transition-transform ${
+                  isSelected ? "rotate-90 text-primary" : "text-muted-foreground"
+                }`} />
+              </div>
             </button>
           )
         })}
