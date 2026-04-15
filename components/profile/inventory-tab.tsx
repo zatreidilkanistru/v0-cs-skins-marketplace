@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import Image from "next/image"
 import { Search } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
@@ -21,42 +22,42 @@ const inventoryItems = [
     name: "AK-47 | Redline",
     condition: "Field-Tested",
     rarity: "classified",
-    image: "https://community.akamai.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpot7HxfDhjxszJemkV09-5lpKKqPrxN7LEmyVQ7MEpiLuSrYmnjQO3-UZkNmj2cY6RclNrMl_V-Fm4wuvuhZS6uMzKySBku3Z04Q/256fx256f",
+    image: "https://community.fastly.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpot7HxfDhjxszJemkV09-5lpKKqPrxN7LEmyVQ7MEpiLuSrYmnjQO3-UZkNmj2cY6RclNrMl_V-Fm4wuvuhZS6uMzKySBku3Z04Q/360fx360f",
   },
   {
     id: 2,
     name: "M4A4 | Mainframe",
     condition: "Minimal Wear",
     rarity: "uncommon",
-    image: "https://community.akamai.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpou-6kejhz2v_Nfz5H_uO1gb-Gw_alIITCmX5d_MR6j_v--YXygED6_kVvamHzcoWVJgQ7ZFzW_ADqw-u5hcC0tZ_Im3swvyFxsSnbnhS_gx9SLrs4b4HYHQ/256fx256f",
+    image: "https://community.fastly.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpou-6kejhz2v_Nfz5H_uO1gb-Gw_alIITCmX5d_MR6j_v--YXygED6_UY5NjvxcNSUdQc2ZA7TqVa4wuu5gMK0uM7LnXA17iIi5XrZln-JuONZ/360fx360f",
   },
   {
     id: 3,
     name: "AWP | Asiimov",
     condition: "Battle-Scarred",
     rarity: "covert",
-    image: "https://community.akamai.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpot621FAR17PLfYQJK9cyzhr-KmsjwPKvBmm5u5cB1g_zMu4702QGwqkRkMm7ydY_BdwY5aA6C-QO3yOa9g5-_vpXKzHo1vyV24ynfnRSzhxpLbeZrxavI/256fx256f",
+    image: "https://community.fastly.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpot621FAR17PLfYQJK9cyzhr-KmsjwPKvBmm5u5cB1g_zMu4702QGwqkRkMm7ydY_BdwY5aA6C-QO3yOa9g5-_vpXKzHo1vyV24ynfnRSzhxpLbeZrxavI/360fx360f",
   },
   {
     id: 4,
     name: "Desert Eagle | Blaze",
     condition: "Factory New",
     rarity: "restricted",
-    image: "https://community.akamai.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgposr-kLAtl7PDdTjlH7du6kb-FlvD1DLfYkWNFpsRz3-rHpdjt0FXm_xFtazr2I4KQIQ9vZl6B_1m3wu7t1pC9tZSfnXNgvCkh4XqLnBKp1hxJcKUx0ohqEBaL/256fx256f",
+    image: "https://community.fastly.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgposr-kLAtl7PDdTjlH7du6kb-FlvD1DLfYkWNFpsRz3-rHpdjt0FXm_xFtazr2I4KQIQ9vZl6B_1m3wu7t1pC9tZSfnXNgvCkh4XqLnBKp1hxJcKUx0ohqEBaL/360fx360f",
   },
   {
     id: 5,
     name: "USP-S | Kill Confirmed",
     condition: "Minimal Wear",
     rarity: "covert",
-    image: "https://community.akamai.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpoo6m1FBRp3_bGcjhQ09ulq5WYh8j_OrfdqWhe5sN4mOTE8NWmjgPmqUU4Nj3zcoTEelJtZFHVrAS2yee500-puoOJlyXo3xQxZXE/256fx256f",
+    image: "https://community.fastly.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpoo6m1FBRp3_bGcjhQ09ulq5WYh8j_OrfdqWhe5sN4mOTE8NWmjgPmqUU4Nj3zcoTEelJtZFHVrAS2yee500-puoOJlyXo3xQxZXE/360fx360f",
   },
   {
     id: 6,
     name: "Glock-18 | Fade",
     condition: "Factory New",
     rarity: "restricted",
-    image: "https://community.akamai.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgposbaqKAxf0Ob3djFN79eJnY6PnvD7DLbUkmJE5Yt0j7jC8d73jFGxqkFrYjumJI-VJgJoZVmE-QLrl-jugJPvuZ_Xm3NlviR0-z-DyPKKJBDv/256fx256f",
+    image: "https://community.fastly.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgposbaqKAxf0Ob3djFN79eJnY6PnvD7DLbUkmJE5Yt0j7jC8d73jFGxqkFrYjumJI-VJgJoZVmE-QLrl-jugJPvuZ_Xm3NlviR0-z-DyPKKJBDv/360fx360f",
   },
 ]
 
@@ -134,11 +135,13 @@ export function InventoryTab() {
             )}
           >
             {/* Image Container */}
-            <div className="aspect-square bg-secondary/30 p-4">
-              <img
+            <div className="relative aspect-square bg-secondary/30">
+              <Image
                 src={item.image}
                 alt={item.name}
-                className="h-full w-full object-contain transition-transform group-hover:scale-105"
+                fill
+                unoptimized
+                className="object-contain p-4 transition-transform group-hover:scale-105"
               />
             </div>
 
