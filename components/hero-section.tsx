@@ -1,9 +1,14 @@
 "use client"
 
+import { useState } from "react"
+import Link from "next/link"
 import { Sparkles, ShieldCheck } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { ConfirmPurchaseModal } from "@/components/modals/confirm-purchase-modal"
 
 export function HeroSection() {
+  const [showPurchaseModal, setShowPurchaseModal] = useState(false)
+
   return (
     <section className="flex flex-col gap-8 lg:flex-row lg:items-start lg:justify-between">
       {/* Left Content */}
@@ -26,11 +31,11 @@ export function HeroSection() {
 
         {/* CTAs */}
         <div className="flex flex-wrap items-center gap-3">
-          <Button size="lg" className="font-semibold">
-            Explore listings
+          <Button size="lg" className="font-semibold" asChild>
+            <Link href="/market/rifle">Explore listings</Link>
           </Button>
-          <Button size="lg" variant="secondary" className="font-semibold">
-            Open collection view
+          <Button size="lg" variant="secondary" className="font-semibold" asChild>
+            <Link href="/market/knives">Open collection view</Link>
           </Button>
         </div>
 
@@ -86,10 +91,30 @@ export function HeroSection() {
 
         {/* Actions */}
         <div className="grid grid-cols-2 gap-3">
-          <Button className="font-semibold">Buy featured</Button>
-          <Button variant="secondary" className="font-semibold">Seller profile</Button>
+          <Button className="font-semibold" onClick={() => setShowPurchaseModal(true)}>
+            Buy featured
+          </Button>
+          <Button variant="secondary" className="font-semibold" asChild>
+            <Link href="/profile">Seller profile</Link>
+          </Button>
         </div>
       </div>
+
+      <ConfirmPurchaseModal
+        open={showPurchaseModal}
+        onOpenChange={setShowPurchaseModal}
+        item={{
+          name: "M4A4 | Mainframe",
+          wear: "Minimal Wear",
+          price: 12,
+          image: "https://community.fastly.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpou-6kejhz2v_Nfz5H_uO1gb-Gw_alIITCmX5d_MR6j_v--YXygED6_UY5NjvxcNSUdQc2ZA7TqVa4wuu5gMK0uM7LnXA17iIi5XrZln-JuONZ/360fx360f",
+          seller: {
+            name: "CS2_Trader",
+            trustScore: 100,
+            trades: 47,
+          },
+        }}
+      />
     </section>
   )
 }

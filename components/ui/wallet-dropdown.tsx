@@ -145,25 +145,37 @@ export function WalletDropdown() {
 
             {/* Action Buttons */}
             <div className="grid grid-cols-4 gap-2 mt-4">
-              <button className="flex flex-col items-center gap-1 p-2 rounded-lg hover:bg-secondary transition-colors">
+              <button 
+                onClick={() => { setIsOpen(false); window.location.href = "/bridge"; }}
+                className="flex flex-col items-center gap-1 p-2 rounded-lg hover:bg-secondary transition-colors"
+              >
                 <div className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center">
                   <Send className="h-4 w-4" />
                 </div>
                 <span className="text-xs">Send</span>
               </button>
-              <button className="flex flex-col items-center gap-1 p-2 rounded-lg hover:bg-secondary transition-colors">
+              <button 
+                onClick={() => { setIsOpen(false); window.location.href = "/bridge"; }}
+                className="flex flex-col items-center gap-1 p-2 rounded-lg hover:bg-secondary transition-colors"
+              >
                 <div className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center">
                   <ArrowLeftRight className="h-4 w-4" />
                 </div>
                 <span className="text-xs">Swap</span>
               </button>
-              <button className="flex flex-col items-center gap-1 p-2 rounded-lg hover:bg-secondary transition-colors">
+              <button 
+                onClick={() => { setIsOpen(false); window.location.href = "/bridge"; }}
+                className="flex flex-col items-center gap-1 p-2 rounded-lg hover:bg-secondary transition-colors"
+              >
                 <div className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center">
                   <Download className="h-4 w-4" />
                 </div>
                 <span className="text-xs">Deposit</span>
               </button>
-              <button className="flex flex-col items-center gap-1 p-2 rounded-lg hover:bg-secondary transition-colors">
+              <button 
+                onClick={() => { setIsOpen(false); window.location.href = "/"; }}
+                className="flex flex-col items-center gap-1 p-2 rounded-lg hover:bg-secondary transition-colors"
+              >
                 <div className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center">
                   <Plus className="h-4 w-4" />
                 </div>
